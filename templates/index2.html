@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="static/css/style.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+
+		<title>Ghost Gear Easy Report - Identify Abandoned Fishing Equipment</title>
+	</head>
+
+	<body>
+
+
+        <script>
+
+    function getLocation() {
+        buttonFunction();
+        submitFunction();
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+       alert("Geolocation is not supported by this browser.");
+    }
+}
+
+
+function showPosition(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    console.log(latitude);
+    $("#lat").val(latitude);
+    $("#lon").val(longitude);
+    
+    
+};
+    window.onload = getLocation;
+var listOfItems = [];
+function submitFunction() {
+    $( ".submitButton" ).click(function(event) {
+    var x = $(".quiz-answer.active");
+    if (x.length < 5) {
+        event.preventDefault();
+    }
+    else {
+        x.each(function( index ) {
+          console.log( index + ": " + $( this ).text() );
+          listOfItems.push($( this ).text());
+    });
+        $("#item").val(listOfItems[0]);
+        $("#animal").val(listOfItems[1]);
+        $("#depth").val(listOfItems[2]);
+        $("#isRecovered").val(listOfItems[3]);
+        $("#material").val(listOfItems[4]);
+        console.log(listOfItems[0]);
+}
+}
+)};
+
+
+function buttonFunction () {
+var Quiz = function(){
+  var self = this;
+  this.init = function(){
+    self._bindEvents();
+  }
+  
+  this.correctAnswers = [
+    { question: 1, answer: 'a' },
+    { question: 2, answer: 'b' },
+    { question: 3, answer: 'd' },
+    { question: 4, answer: 'c' },
+    { question: 5, answer: 'd' },
+    { question: 6, answer: 'b' },
+  ]
+  
+  this._pickAnswer = function($answer, $answers){
+    $answers.find('.quiz-answer').removeClass('active');
+    $answer.addClass('active');
+  }
+  this._calcResult = function(){
+    var numberOfCorrectAnswers = 0;
+    $('ul[data-quiz-question]').each(function(i){
+      var $this = $(this),
+          chosenAnswer = $this.find('.quiz-answer.active').data('quiz-answer'),
+          correctAnswer;
+      
+      for ( var j = 0; j < self.correctAnswers.length; j++ ) {
+        var a = self.correctAnswers[j];
+        if ( a.question == $this.data('quiz-question') ) {
+          correctAnswer = a.answer;
+        }
+      }
+      
+      if ( chosenAnswer == correctAnswer ) {
+        numberOfCorrectAnswers++;
+        
+        // highlight this as correct answer
+        $this.find('.quiz-answer.active').addClass('correct');
+      }
+      else {
+        $this.find('.quiz-answer[data-quiz-answer="'+correctAnswer+'"]').addClass('correct');
+        $this.find('.quiz-answer.active').addClass('incorrect');
+      }
+    });
+    if ( numberOfCorrectAnswers < 3 ) {
+      return {code: 'bad', text: 'Poor spelling skills'};
+    }
+    else if ( numberOfCorrectAnswers == 3 || numberOfCorrectAnswers == 4 ) {
+      return {code: 'mid', text: 'Moderate spelling skills'};
+    }
+    else if ( numberOfCorrectAnswers > 4 ) {
+      return {code: 'good', text: 'Good spelling skills'};
+    }
+  }
+  this._isComplete = function(){
+    var answersComplete = 0;
+    $('ul[data-quiz-question]').each(function(){
+      if ( $(this).find('.quiz-answer.active').length ) {
+        answersComplete++;
+      }
+    });
+    if ( answersComplete >= 6 ) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  this._showResult = function(result){
+    $('.quiz-result').addClass(result.code).html(result.text);
+  }
+  this._bindEvents = function(){
+    $('.quiz-answer').on('click', function(){
+      var $this = $(this),
+          $answers = $this.closest('ul[data-quiz-question]');
+      self._pickAnswer($this, $answers);
+      if ( self._isComplete() ) {
+        
+        // scroll to answer section
+        $('html, body').animate({
+          scrollTop: $('.quiz-result').offset().top
+        });
+        
+        self._showResult( self._calcResult() );
+        $('.quiz-answer').off('click');
+        
+      }
+    });
+  }
+}
+var quiz = new Quiz();
+quiz.init();
+}
+
+</script>
+
+<div class="quiz">
+  
+  <h2 class="quiz-question">Q1: What item is it?</h2>
+  <ul data-quiz-question="1">
+    <li class="quiz-answer" data-quiz-answer="a">Net</li>
+    <li class="quiz-answer" data-quiz-answer="b">Pot</li>
+    <li class="quiz-answer" data-quiz-answer="c">Line</li>
+  </ul>
+  
+  <h2 class="quiz-question">Q2: How animal was attached?</h2>
+  <ul data-quiz-question="2">
+    <li class="quiz-answer" data-quiz-answer="a">None</li>
+    <li class="quiz-answer" data-quiz-answer="b">Mammal</li>
+    <li class="quiz-answer" data-quiz-answer="c">Invertebrate</li>
+    <li class="quiz-answer" data-quiz-answer="d">Other</li>
+  </ul>
+  
+  <h2 class="quiz-question">Q3: How ocean depth?</h2>
+  <ul data-quiz-question="3">
+    <li class="quiz-answer" data-quiz-answer="a">Shore</li>
+    <li class="quiz-answer" data-quiz-answer="b">Ocean floor</li>
+    <li class="quiz-answer" data-quiz-answer="c">Floating</li>
+  </ul>
+  
+  <h2 class="quiz-question">Q4: Recovered?</h2>
+  <ul data-quiz-question="4">
+    <li class="quiz-answer" data-quiz-answer="a">Yes</li>
+    <li class="quiz-answer" data-quiz-answer="b">No</li>
+  </ul>
+  
+  <h2 class="quiz-question">Q5: What material?</h2>
+  <ul data-quiz-question="5">
+    <li class="quiz-answer" data-quiz-answer="a">Synthetic</li>
+    <li class="quiz-answer" data-quiz-answer="b">Mesh</li>
+  </ul>
+
+</div>
+
+<div class="quiz-result"></div>
+
+
+         <form class="navbar-form navbar-right" action="/add" method="post"> <div class="form-group" id="nav-form">
+        <nav class = "navbar-fixed-bottom navbar nav-bot navbar-inverse">
+            <input type ="hidden" class="form-control marg" placeholder="0" name="lat" id="lat">
+            <input type = "hidden" class="form-control marg" placeholder="0" name="lon" id="lon">
+
+            <input type ="hidden" class="form-control marg" placeholder="0" name="item" id="item">
+            <input type ="hidden" class="form-control marg" placeholder="0" name="animal" id="animal">
+            <input type ="hidden" class="form-control marg" placeholder="0" name="depth" id="depth">
+            <input type ="hidden" class="form-control marg" placeholder="0" name="isRecovered" id="recovered">
+            <input type ="hidden" class="form-control marg" placeholder="0" name="material" id="material">
+
+
+
+
+
+      <input type="submit" class="submitButton btn btn-default navbar-btn marg" value="Submit"></input>
+</nav>
+            </div>
+            </form>
+
+
+
+
+
+
+
+
+
+		<div id="wrapper" class="center">
+           
+		
+                 <div id="header">
+			<div class="row">
+<h1 class="center">Ghost Gear Easy Report</h1>
+                </div></div>
+<div class="row80 center">
+    
+        <div class="progress center">
+        <div class="zero no-color"></div>
+        <div class="one no-color"></div>
+        <div class="two no-color"></div>
+        <div class="three no-color"></div>
+        <div class="four no-color"></div>
+        <div class="five no-color"></div>
+        <div class="six no-color"></div>
+        <div class="seven no-color"></div>
+        <div class="eight no-color"></div>
+        <div class="nine no-color"></div>
+        <div class="ten no-color"></div>
+            <div class="progress-bar" style="width: 0%;"></div>
+        </div></div>
+
+            <div class="row2 container center justify">
+                <div class="col2">
+                      
+                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span>
+                      <div class="caption">
+                        <h3>Upload a photo</h3>
+                        <p>Upload a photo of the fishing net, if available <em>(preferred)</em></p>
+                        <p><a href="#" class="btn btn-primary" role="button">Upload a photo</a></p>
+                     
+                    </div>
+</div>
+    <div class="blank2">
+    </div>
+
+        <div class="col2">
+                                  
+                  <span class="glyphicon glyphicon-flag" aria-hidden="true"></span>
+                  <div class="caption">
+                    <h3>Manually enter location</h3>
+                    <p>Select location on a map, or manually enter coordinates.</p>
+                    <p><a href="#" class="btn btn-primary" role="button">Enter location</a></p>
+                
+  </div>
+        
+            </div>
+</div>
+
+        
+        </div> 
+	</body>
+</html>
