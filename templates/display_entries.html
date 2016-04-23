@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="static/css/style.css">
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="static/js/bootstrap.min.js"></script>
+
+		<title>Ghost Gear Easy Report - Identify Abandoned Fishing Equipment</title>
+	</head>
+
+	<body>
+		<div id="wrapper" class="center">
+           
+		
+                 <div id="header">
+			<div class="row">
+<h1 class="center">Ghost Gear Easy Report</h1>
+                </div></div>
+<div class="row80 center">
+    
+        <div class="progress center">
+        <div class="zero no-color"></div>
+        <div class="one no-color"></div>
+        <div class="two no-color"></div>
+        <div class="three no-color"></div>
+        <div class="four no-color"></div>
+        <div class="five no-color"></div>
+        <div class="six no-color"></div>
+        <div class="seven no-color"></div>
+        <div class="eight no-color"></div>
+        <div class="nine no-color"></div>
+        <div class="ten no-color"></div>
+            <div class="progress-bar" style="width: 0%;"></div>
+        </div></div>
+
+        <div class="col-md-8 col-md-offset-2">
+         <div class="text-left">                
+
+
+        <div class="panel panel-info">
+            {% for entry in return_list %}
+ 
+            <div class="panel-heading">Results 1</div>
+            <div class="panel-body">
+                 <p>{{ entry[0] }}</p>
+                 <p>{{ entry[1] }}</p>
+                 <p>{{ entry[2] }}</p>
+  
+            </div>
+             {% endfor %}
+
+
+         </div>
+     </div>   
+  </div>  
+
+
+
+</div>
+
+        
+        </div>
+	</body>
+</html>
