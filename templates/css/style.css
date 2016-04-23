@@ -1,0 +1,20 @@
+.title{
+
+}
+
+#centerwrap{
+	margin:auto;
+	width: 90%;
+
+}
+
+.center{
+	text-align: center;
+	margin: auto;
+}
+
+.progress{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 75%;
+}
