@@ -30,12 +30,30 @@ def add():
 	user = "Lauren"
 	route = "/" + id
 	firebase.put(route, "Item", "Net")
-	firebase.put(route, "Animals", "Fish")
+	firebase.put(route, "Animals", "Seal")
 	firebase.put(route, "Depth", None)
 	firebase.put(route, "Recovered", False)
 	firebase.put(route, "Material", None)
 	return render_template("index.html");
 
+@app.route('/display', methods=['GET'])
+def display():
+	item = "Net"
+	recovered = False
+	return_list = []
+	print "HERE!"
+	results = firebase.get('/', None)
+	print "HERE too!!"
+	for id in results.keys():
+
+		if (results[id]["Item"] == item) and (results[id]["Recovered"] == recovered):
+			local_list = []
+			local_list.append(results[id]["Item"])
+			local_list.append(results[id]["Animals"])
+			local_list.append(results[id]["Recovered"])
+			return_list.append(local_list)
+
+	return render_template("display_entries.html", return_list=return_list)
 
 if __name__ == '__main__':
     app.run()
