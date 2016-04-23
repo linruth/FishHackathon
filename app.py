@@ -48,6 +48,9 @@ def add():
 
 	return redirect('/');
 
+@app.route('/thankyou')
+def thankyou():
+	return render_template("thankyou.html")
 
 @app.route('/display', methods=['GET'])
 def display():
