@@ -19,7 +19,7 @@ def hello_world():
     return render_template("index2.html");
 
 
-@app.route('/add', methods=['GET', 'POST'])
+@app.route('/add', methods=['POST'])
 def add():
 	id = id_generator()
 	route = "/" + id
@@ -28,15 +28,26 @@ def add():
 		id = id_generator()
 		route = "/" + id
 		result = firebase.get(route, None)
+	item = request.form["item"]
+	animal = request.form["animal"]
+	depth = request.form["depth"]
+	recovered = request.form["isRecovered"]
+	material = request.form["material"]
+	lat = request.form["lat"]
+	lon = request.form["lon"]
+	print lon
 
-	user = "Lauren"
 	route = "/" + id
-	firebase.put(route, "Item", "Net")
-	firebase.put(route, "Animals", "Seal")
-	firebase.put(route, "Depth", None)
-	firebase.put(route, "Recovered", False)
-	firebase.put(route, "Material", None)
-	return render_template("index.html");
+	firebase.put(route, "Item", item)
+	firebase.put(route, "Animals", animal)
+	firebase.put(route, "Depth", depth)
+	firebase.put(route, "Recovered", recovered)
+	firebase.put(route, "Material", material)
+	firebase.put(route, "Lat", lat)
+	firebase.put(route, "Lon", lon)
+
+	return redirect('/');
+
 
 @app.route('/display', methods=['GET'])
 def display():
