@@ -43,18 +43,15 @@ def display():
 	item = "Net"
 	recovered = False
 	return_list = []
-	print "HERE!"
 	results = firebase.get('/', None)
-	print "HERE too!!"
-	for id in results.keys():
 
+	for id in results.keys():
 		if (results[id]["Item"] == item) and (results[id]["Recovered"] == recovered):
 			local_list = []
 			local_list.append(results[id]["Item"])
 			local_list.append(results[id]["Animals"])
 			local_list.append(results[id]["Recovered"])
 			return_list.append(local_list)
-
 	return render_template("display_entries.html", return_list=return_list)
 
 if __name__ == '__main__':
