@@ -15,9 +15,27 @@ body{
 
 }
 
+
 body {
   margin:0;
   padding:20px;
+}
+
+.shareMoreLink {
+	text-align: center;
+	color: white;
+}
+.checkIcon{
+	text-align: center;
+    font-size: 150px;
+    color: lightgreen;
+}
+
+.thankYouPage {
+  background-color: #46B5BF;
+}
+.sociallink{
+  color: white;
 }
 .quiz {
   padding:0 30px 20px 30px;
@@ -28,6 +46,16 @@ body {
     list-style:none;
     padding:0;
     margin:0;
+  }
+
+  .social {
+    text-align: center;
+    font-size: 80px;
+  }
+
+  .thankYouMessage {
+    text-align: center;
+    color: white;
   }
   
 .quiz-question {
