@@ -22,39 +22,23 @@
         buttonFunction();
         submitFunction();
 
-  function handleFileSelect(evt) {
-    var files = evt.target.files; // FileList object
-
-    // Loop through the FileList and render image files as thumbnails.
-    for (var i = 0, f; f = files[i]; i++) {
-
-      // Only process image files.
-      if (!f.type.match('image.*')) {
-        continue;
-      }
-
-      var reader = new FileReader();
-
-      // Closure to capture the file information.
-      reader.onload = (function(theFile) {
-        return function(e) {
-          // Render thumbnail.
-          var span = document.createElement('span');
-          span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                            '" title="', escape(theFile.name), '"/>'].join('');
-                            console.log(e.target.result);
-                            $("#photo").val(e.target.result);
-          document.getElementById('list').insertBefore(span, null);
-        };
-      })(f);
-
-      // Read in the image file as a data URL.
-      reader.readAsDataURL(f);
-
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#imagethumbnail').attr('src', e.target.result);
+                $("#photo").val(e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-  }
+    
+    $("#imgInp").change(function(){
+        readURL(this);
+    });
 
-  document.getElementById('files').addEventListener('change', handleFileSelect, false);
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -260,8 +244,11 @@ quiz.init();
   </ul>
 
   <h2 class="quiz-question">Upload your image (Optional)</h2>
-  <input type="file" id="files" name="files[]" multiple />
-  <output id="list"></output>
+      <form id="form1" runat="server">
+        <input type='file' id="imgInp" />
+        <br>
+        <img id="imagethumbnail" src="static/logo_360.png" alt="your image" height="200" />
+    </form>
 
 </div>
 
