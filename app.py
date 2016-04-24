@@ -1,11 +1,15 @@
 from xml.etree.ElementTree import fromstring
 from firebase import firebase
+from imgurpython import ImgurClient
 
 from flask import Flask, render_template, request,json,jsonify, redirect
 import urllib
 
 import random
 import string
+
+
+
 
 app = Flask(__name__)
 firebase = firebase.FirebaseApplication("https://boiling-torch-8247.firebaseio.com/#-KG09txqVpTw6jUmqcas|c3c8dd314bcafecb0cf13741fe2b0825", None)
@@ -35,7 +39,9 @@ def add():
 	material = request.form["material"]
 	lat = request.form["lat"]
 	lon = request.form["lon"]
+	photo = request.form["photo"]
 	print lon
+	print photo
 
 	route = "/" + id
 	firebase.put(route, "Item", item)
@@ -45,12 +51,51 @@ def add():
 	firebase.put(route, "Material", material)
 	firebase.put(route, "Lat", lat)
 	firebase.put(route, "Lon", lon)
+	firebase.put(route, "Photo", photo)
 
 	return redirect('/');
 
 @app.route('/thankyou')
 def thankyou():
 	return render_template("thankyou.html")
+
+
+
+# @app.route('/image_upload', methods=['POST'])
+# def upload_file():
+# 	item = request.form["my_image"];
+# 	print (item);
+# 	return render_template("/")
+#     # upload_result = None
+#     # thumbnail_url1 = None
+#     # print("before post");
+#     # if request.method == 'POST':
+#     # 	print("after post")
+#     #     file = request.files['my_image']
+#     #     print("request files")
+#     #     if file:
+#     #     	print("enter if")
+#     #     	upload_result = upload(file)
+#     #     	thumbnail_url1, options = cloudinary_url(upload_result['public_id'], format = "jpg", crop = "fill", width = 100, height = 100)
+#     #     	print(public_id)
+    
+#     #return render_template('/')
+
+
+
+# @app.route('/uploadpage')
+# def you():
+# 	return render_template("imageform.html")
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/display', methods=['GET'])
 def display():
