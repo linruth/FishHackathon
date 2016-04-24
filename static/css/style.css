@@ -139,7 +139,7 @@ body {
 
   .navbar-brand {
     font-weight: bold;
-    background-color: lightgrey;
+    background: darkgrey;
   }
 
   #map {
