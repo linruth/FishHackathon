@@ -1,6 +1,5 @@
 from xml.etree.ElementTree import fromstring
 from firebase import firebase
-from imgurpython import ImgurClient
 
 from flask import Flask, render_template, request,json,jsonify, redirect
 import urllib
@@ -103,7 +102,7 @@ def filter_material(choice, recovered):
 		return False
 
 
-@app.route('/display', methods=['GET'])
+@app.route('/display', methods=['GET', 'POST'])
 def display():
 	
 	item_choice = request.form["item"]
