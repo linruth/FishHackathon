@@ -21,6 +21,16 @@ body {
   padding:20px;
 }
 
+.logo_360 {
+	height: 70px;
+	width: 70px;
+	margin-left: 10px;
+	margin-bottom: 15px;
+}
+.title {
+	text-align: center;
+}
+
 .shareMoreLink {
 	text-align: center;
 	color: white;
