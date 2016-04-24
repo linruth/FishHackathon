@@ -113,6 +113,7 @@ def display():
 
 	return_list = []
 	results = firebase.get('/', None)
+
 	count = 1
 	for id in results.keys():
 
@@ -129,7 +130,11 @@ def display():
 
 			return_list.append(local_list)
 			count = count + 1
-	return render_template("display_entries.html", return_list=return_list)
+	print len(return_list)
+	if len(return_list) == 0:
+		return render_template("display_entriesFail.html")
+	else:
+		return render_template("display_entries.html", return_list=return_list)
 
 @app.route('/find', methods=['GET'])
 def find():
