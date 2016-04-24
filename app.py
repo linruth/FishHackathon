@@ -46,27 +46,87 @@ def add():
 	firebase.put(route, "Lat", lat)
 	firebase.put(route, "Lon", lon)
 
-	return redirect('/');
+	return redirect('/thankyou');
 
 @app.route('/thankyou')
 def thankyou():
 	return render_template("thankyou.html")
 
-@app.route('/display', methods=['GET'])
+def filter_animal(choice, animal):
+	if choice == "All":
+		return True
+	elif choice == "No" and animal == "None":
+		return True
+	elif choice == "Yes" and animal != "None":
+		return True
+	else:
+		return False
+
+def filter_depth(choice, depth):
+	if choice == "All":
+		return True
+	elif choice == "Shore" and depth == "Shore":
+		return True
+	elif choice == "Ocean floor" and depth == "Ocean floor":
+		return True
+	elif choice == "Floating" and depth == "Floating":
+		return True
+	else:
+		return False
+
+def filter_recovered(choice, recovered):
+	if choice == "All":
+		return True
+	elif choice == "Yes" and recovered == "Yes":
+		return True
+	elif choice == "No" and recovered == "No":
+		return True
+	else:
+		return False
+
+def filter_material(choice, recovered):
+	if choice == "All":
+		return True
+	elif choice == "Synthetic" and recovered == "Synthetic":
+		return True
+	elif choice == "Mesh" and recovered == "Mesh":
+		return True
+	else:
+		return False
+
+@app.route('/display', methods=['GET', 'POST'])
 def display():
-	item = "Net"
-	recovered = False
+	
+	item_choice = request.form["item"]
+	animal_choice = request.form["animal"]
+	depth_choice = request.form["depth"]
+	recovered_choice = request.form["isRecovered"]
+	material_choice = request.form["material"]
+
 	return_list = []
 	results = firebase.get('/', None)
-
+	count = 1
 	for id in results.keys():
-		if (results[id]["Item"] == item) and (results[id]["Recovered"] == recovered):
+
+		if (filter_recovered(recovered_choice, results[id]["Recovered"]) and filter_material(material_choice, results[id]["Material"]) and filter_animal(animal_choice, results[id]["Animals"]) and results[id]["Item"] == item_choice and filter_depth(depth_choice, results[id]["Depth"])):
 			local_list = []
+			local_list.append(count)
+			print count
 			local_list.append(results[id]["Item"])
 			local_list.append(results[id]["Animals"])
 			local_list.append(results[id]["Recovered"])
+			local_list.append(results[id]["Depth"])
+			local_list.append(results[id]["Lat"])
+			local_list.append(results[id]["Lon"])
+
 			return_list.append(local_list)
+			count = count + 1
+	print return_list
 	return render_template("display_entries.html", return_list=return_list)
+
+@app.route('/find', methods=['GET'])
+def find():
+	return render_template("findindex.html")
 
 if __name__ == '__main__':
     app.run()

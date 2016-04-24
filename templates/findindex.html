@@ -14,6 +14,30 @@
 	</head>
 
 	<body>
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/about">About ghost gear<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="/find">Find reported ghost gear <span class="sr-only">(current)</span></a></li>
+
+      </ul>
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
 
         <script>
@@ -159,33 +183,8 @@ quiz.init();
 
 </script>
 
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="/">Home</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="/about">About ghost gear<span class="sr-only">(current)</span></a></li>
-        <li><a href="/find">Find reported ghost gear <span class="sr-only">(current)</span></a></li>
-
-      </ul>
-
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-
 <div class="row">
-<h1 class="center">Ghost Gear Easy Report</h1>
+<h1 class="center">Ghost Gear Easy Report -- <small>Find reported ghost gear</small></h1>
                 </div></div>
 <div class="row80 center">
     
@@ -210,38 +209,40 @@ quiz.init();
 
 <div class="quiz">
   
-  <h2 class="quiz-question">Q1: What item is it?</h2>
+  <h2 class="quiz-question">Q1: What item are you interested in?</h2>
   <ul data-quiz-question="1">
     <li class="quiz-answer" data-quiz-answer="a">Net</li>
     <li class="quiz-answer" data-quiz-answer="b">Pot</li>
     <li class="quiz-answer" data-quiz-answer="c">Line</li>
   </ul>
   
-  <h2 class="quiz-question">Q2: How animal was attached?</h2>
+  <h2 class="quiz-question">Q2: Do you want to see ghost gear with animals attached?</h2>
   <ul data-quiz-question="2">
-    <li class="quiz-answer" data-quiz-answer="a">None</li>
-    <li class="quiz-answer" data-quiz-answer="b">Mammal</li>
-    <li class="quiz-answer" data-quiz-answer="c">Invertebrate</li>
-    <li class="quiz-answer" data-quiz-answer="d">Other</li>
+    <li class="quiz-answer" data-quiz-answer="a">Yes</li>
+    <li class="quiz-answer" data-quiz-answer="b">No</li>
+    <li class="quiz-answer" data-quiz-answer="c">All</li>
   </ul>
   
-  <h2 class="quiz-question">Q3: How ocean depth?</h2>
+  <h2 class="quiz-question">Q3: What ocean depth?</h2>
   <ul data-quiz-question="3">
     <li class="quiz-answer" data-quiz-answer="a">Shore</li>
     <li class="quiz-answer" data-quiz-answer="b">Ocean floor</li>
     <li class="quiz-answer" data-quiz-answer="c">Floating</li>
+    <li class="quiz-answer" data-quiz-answer="d">All</li>
   </ul>
   
   <h2 class="quiz-question">Q4: Recovered?</h2>
   <ul data-quiz-question="4">
     <li class="quiz-answer" data-quiz-answer="a">Yes</li>
     <li class="quiz-answer" data-quiz-answer="b">No</li>
+    <li class="quiz-answer" data-quiz-answer="c">All</li>
   </ul>
   
   <h2 class="quiz-question">Q5: What material?</h2>
   <ul data-quiz-question="5">
     <li class="quiz-answer" data-quiz-answer="a">Synthetic</li>
     <li class="quiz-answer" data-quiz-answer="b">Mesh</li>
+    <li class="quiz-answer" data-quiz-answer="c">All</li>
   </ul>
 
 </div>
@@ -249,7 +250,7 @@ quiz.init();
 <div class="quiz-result"></div>
 
 
-         <form class="navbar-form navbar-right" action="/add" method="post"> <div class="form-group" id="nav-form">
+         <form class="navbar-form navbar-right" action="/display" method="post"> <div class="form-group" id="nav-form">
         <nav class = "navbar-fixed-bottom navbar nav-bot navbar-inverse">
             <input type ="hidden" class="form-control marg" placeholder="0" name="lat" id="lat">
             <input type = "hidden" class="form-control marg" placeholder="0" name="lon" id="lon">
@@ -293,7 +294,6 @@ quiz.init();
 
 
 </div>
-
 
         
         </div> 
