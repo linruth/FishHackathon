@@ -111,7 +111,6 @@ def display():
 		if (filter_recovered(recovered_choice, results[id]["Recovered"]) and filter_material(material_choice, results[id]["Material"]) and filter_animal(animal_choice, results[id]["Animals"]) and results[id]["Item"] == item_choice and filter_depth(depth_choice, results[id]["Depth"])):
 			local_list = []
 			local_list.append(count)
-			print count
 			local_list.append(results[id]["Item"])
 			local_list.append(results[id]["Animals"])
 			local_list.append(results[id]["Recovered"])
@@ -121,7 +120,6 @@ def display():
 
 			return_list.append(local_list)
 			count = count + 1
-	print return_list
 	return render_template("display_entries.html", return_list=return_list)
 
 @app.route('/find', methods=['GET'])

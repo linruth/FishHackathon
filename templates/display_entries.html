@@ -11,6 +11,14 @@
 	<script src="static/js/bootstrap.min.js"></script>
 
 		<title>Ghost Gear Easy Report - Identify Abandoned Fishing Equipment</title>
+        <style>
+      #map {
+        width: 400px;
+        height: 300px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    </style>
 	</head>
 
 	<body>
@@ -78,18 +86,58 @@
                  <p>Recovered? : {{ entry[3] }}</p>
                  <p>Depth : {{ entry[4] }}</p>
                  <p><strong>Location Found:</strong>  Latitude: {{ entry[5] }}; Longitude: {{ entry[6] }}
-  
+                    
+
             </div>
              {% endfor %}
 
 
          </div>
      </div>   
+
   </div>  
 
 </div>
-
+<div id="map"></div>
         
         </div>
+        <script>
+  function initMap() {
+    var test = {{ return_list|tojson }};
+    
+    var mapDiv = document.getElementById('map');
+    var map = new google.maps.Map(mapDiv, {
+      center: {lat: 49, lng: -123},
+      zoom: 8
+    }
+
+    );
+    var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+
+    for(i=0; i<test.length; i++){
+        var str1 = "Result: ";
+        var contentString = str1.concat(test[i][0]);
+
+    var myLatlng = new google.maps.LatLng(test[i][5], test[i][6]);
+    var infowindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+var marker = new google.maps.Marker({
+  position: myLatlng,
+  map: map,
+  infowindow: infowindow
+});
+
+
+
+google.maps.event.addListener(marker, 'click', function() {
+    this.infowindow.open(map, this);
+});
+
+  }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+         async defer></script>
 	</body>
 </html>
