@@ -78,15 +78,27 @@
         <div class="panel panel-info">
 
             {% for entry in return_list %}
+           
  
-            <div class="panel-heading">Result {{ entry[0] }}</div>
-            <div class="panel-body">
-                 <p>Item : {{ entry[1] }}</p>
+            <div class="panel-heading" >Result {{ entry[0] }}</div>
+            <div class="panel-body" id = {{entry[0]}}>
+                 <p class = "itemID">Item : {{ entry[1] }}</p>
                  <p>Animals : {{ entry[2] }}</p>
                  <p>Recovered? : {{ entry[3] }}</p>
                  <p>Depth : {{ entry[4] }}</p>
                  <p><strong>Location Found:</strong>  Latitude: {{ entry[5] }}; Longitude: {{ entry[6] }}
-                    
+                 <div class="photo"><script> 
+                  var image = new Image();
+                  var photo_string = "{{ entry[7] }}";
+                  if ( photo_string !== "") {
+                      image.src = photo_string;
+                      image.width = 300;
+
+                      document.getElementById({{entry[0]}}).appendChild(image);
+                  } 
+ 
+                  </script> </div> 
+
 
             </div>
              {% endfor %}
@@ -106,8 +118,12 @@
     var test = {{ return_list|tojson }};
     
     var mapDiv = document.getElementById('map');
+          var latitude = parseFloat(test[0][5]);
+          var lon = parseFloat(test[0][6]);
+          console.log(latitude);
+          console.log(lon);
     var map = new google.maps.Map(mapDiv, {
-      center: {lat: 49, lng: -123},
+      center: {lat: latitude, lng: lon},
       zoom: 8
     }
 

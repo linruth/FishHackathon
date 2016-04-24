@@ -125,6 +125,7 @@ def display():
 			local_list.append(results[id]["Depth"])
 			local_list.append(results[id]["Lat"])
 			local_list.append(results[id]["Lon"])
+			local_list.append(results[id]["Photo"])
 
 			return_list.append(local_list)
 			count = count + 1
