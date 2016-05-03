@@ -39,6 +39,9 @@ def add():
 	lat = request.form["lat"]
 	lon = request.form["lon"]
 	photo = request.form["photo"]
+	#locationInput = request.form["location"]
+	#if (locationInput == ""):
+		#print "location is empty"
 	print lon
 	print photo
 
@@ -51,6 +54,7 @@ def add():
 	firebase.put(route, "Lat", lat)
 	firebase.put(route, "Lon", lon)
 	firebase.put(route, "Photo", photo)
+	#firebase.put(route,"LocationGiven", locationInput);
 
 	return redirect('/thankyou');
 
