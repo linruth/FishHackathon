@@ -52,24 +52,8 @@
 		
                  <div id="header">
 			<div class="row">
-<h1 class="center">Ghost Gear Easy Report</h1>
+<h1 class="center title">Ghost Gear Easy Report Gear Found<img src="static/logo_360.png" class="logo_360"></img></h1>
                 </div></div>
-<div class="row80 center">
-    
-        <div class="progress center">
-        <div class="zero no-color"></div>
-        <div class="one no-color"></div>
-        <div class="two no-color"></div>
-        <div class="three no-color"></div>
-        <div class="four no-color"></div>
-        <div class="five no-color"></div>
-        <div class="six no-color"></div>
-        <div class="seven no-color"></div>
-        <div class="eight no-color"></div>
-        <div class="nine no-color"></div>
-        <div class="ten no-color"></div>
-            <div class="progress-bar" style="width: 0%;"></div>
-        </div></div>
 
         <div class="col-md-8 col-md-offset-2">
          <div class="text-left">                
@@ -86,7 +70,7 @@
                  <p>Animals : {{ entry[2] }}</p>
                  <p>Recovered? : {{ entry[3] }}</p>
                  <p>Depth : {{ entry[4] }}</p>
-                 <p><strong>Location Found:</strong>  Latitude: {{ entry[5] }}; Longitude: {{ entry[6] }}
+                 <p><strong>Location Found:</strong>  Latitude: {{ entry[5] }}; Longitude: {{ entry[6] }}</p>
                  <div class="photo"><script> 
                   var image = new Image();
                   var photo_string = "{{ entry[7] }}";
@@ -97,8 +81,9 @@
                       document.getElementById({{entry[0]}}).appendChild(image);
                   } 
  
-                  </script> </div> 
-
+                  </script> </div>
+                 
+				  <p><strong>Additional Comments:</strong><br> {{ entry[8] }}</p> 
 
             </div>
              {% endfor %}

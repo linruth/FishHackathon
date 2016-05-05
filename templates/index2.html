@@ -53,7 +53,6 @@ var lonDetect;
 function showPosition(position) {
     var latitude = latDetect= position.coords.latitude;
     var longitude = lonDetect= position.coords.longitude;
-    console.log(latitude);
     $("#lat").val(latitude);
     $("#lon").val(longitude);
     
@@ -179,10 +178,11 @@ var quiz = new Quiz();
 quiz.init();
 }
 
-function readInput(){
-locationValue = $("#locationInput").val();
-$("#location").val(locationValue);
-}
+
+function readComment(){
+commentValue = $("#additionalComments").val();
+$("#comment").val(commentValue);
+};
 
 function readLon(){
 lonValue = $("#lonInput").val();
@@ -276,21 +276,21 @@ $("#lat").val(latDetect);
     <li class="quiz-answer" data-quiz-answer="b">Mesh</li>
   </ul>
 
-  <h2 class="quiz-question">Optional Information (Photo, Location)</h2>
+  <h2 class="quiz-question">Optional Information (Photo, Location, Comments)</h2>
       <form id="form1" runat="server">
         <input type='file' id="imgInp" />
         <br>
         <img id="imagethumbnail" src="static/logo_360.png" alt="your image" height="200" />
         <br><br>
-        <h4>Location Information</h4>
-        <br>
-        <label>Longitude:</label>
-        <input type = 'text' id="lonInput" onchange = "readLon()" onkeyup="this.onchange()" onpaste="this.onchange()" oninput="this.onchange()" />
+        <h4>Location of Gear Found</h4>
         <label>Latitude:</label>
-        <input type = 'text' id="latInput" onchange = "readLat()" onkeyup="this.onchange()" onpaste="this.onchange()" oninput="this.onchange()" />
+        <input type = 'text' class="form-control" id="latInput" onchange = "readLat()" onkeyup="this.onchange()" onpaste="this.onchange()" oninput="this.onchange()" />
+        <label>Longitude:</label>
+        <input type = 'text' class="form-control" id="lonInput" onchange = "readLon()" onkeyup="this.onchange()" onpaste="this.onchange()" oninput="this.onchange()" />
         <br><br>
-<!--         <label>City,Country<em>(Not as accurate)</em>:</label> -->
-<!--         <input type = 'text' id="locationInput" onchange = "readInput()" onkeyup="this.onchange()" onpaste="this.onchange()" oninput="this.onchange()" /> -->
+        <label>Additional Comments:</label>
+        <br>
+        <textarea rows="5" class="form-control" id="additionalComments" onchange = "readComment()" onkeyup="this.onchange()" onpaste="this.onchange()" oninput="this.onchange()" ></textarea>
     </form>
 
 </div>
@@ -310,6 +310,7 @@ $("#lat").val(latDetect);
             <input type ="hidden" class="form-control marg" placeholder="0" name="material" id="material">
             <input type ="hidden" class="form-control marg" placeholder="0" name="photo" id="photo">
             <input type ="hidden" class="form-control marg" placeholder="0" name="location" id="location">
+            <input type ="hidden" class="form-control marg" placeholder="0" name="comment" id="comment">
 
 
 

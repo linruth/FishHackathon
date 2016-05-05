@@ -39,11 +39,9 @@ def add():
 	lat = request.form["lat"]
 	lon = request.form["lon"]
 	photo = request.form["photo"]
-	#locationInput = request.form["location"]
-	#if (locationInput == ""):
-		#print "location is empty"
-	print lon
-	print photo
+	comment = request.form["comment"]
+
+	print comment
 
 	route = "/" + id
 	firebase.put(route, "Item", item)
@@ -54,7 +52,7 @@ def add():
 	firebase.put(route, "Lat", lat)
 	firebase.put(route, "Lon", lon)
 	firebase.put(route, "Photo", photo)
-	#firebase.put(route,"LocationGiven", locationInput);
+	firebase.put(route,"Comment", comment)
 
 	return redirect('/thankyou');
 
@@ -131,6 +129,8 @@ def display():
 			local_list.append(results[id]["Lat"])
 			local_list.append(results[id]["Lon"])
 			local_list.append(results[id]["Photo"])
+			if results[id]["Comment"]:
+				local_list.append(results[id]["Comment"])
 
 			return_list.append(local_list)
 			count = count + 1
